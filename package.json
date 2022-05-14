@@ -1,13 +1,12 @@
 {
   "name": "fretboard-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "type": "module",
   "bin": {
     "fretboard": "./fretboard.cjs"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": "https://github.com/zhangruize/fretboard",
   "author": "ruize",
   "license": "ISC",
@@ -18,5 +17,14 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.33"
-  }
+  },
+  "keywords": [
+    "guitar",
+    "fretboard",
+    "chords",
+    "scale",
+    "music",
+    "tab",
+    "score"
+  ]
 }
