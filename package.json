@@ -1,13 +1,15 @@
 {
-  "name": "chords",
-  "version": "1.0.0",
+  "name": "fretboard-cli",
+  "version": "1.0.4",
   "description": "",
-  "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "npm run test"
+  "bin": {
+    "fretboard": "./fretboard.cjs"
   },
-  "author": "",
+  "scripts": {
+  },
+  "repository": "https://github.com/zhangruize/fretboard",
+  "author": "ruize",
   "license": "ISC",
   "dependencies": {
     "@types/color": "^3.0.3",

@@ -206,6 +206,9 @@ abstract class HightLightShader implements Shader {
         return Color.hsl(this.hue, 100, 80);
 
     }
+    getDefaultBgColor(stringIndex: number, i: number, length: number, pitch: number): Color {
+        return Color.rgb(50, 50, 50)
+    }
 
     shade(stringIndex: number, i: number, length: number, pitch: number): string {
         let notesName = getNotesName(pitch, this.needOct);
@@ -217,7 +220,9 @@ abstract class HightLightShader implements Shader {
             let fgColorStr = styles.color.ansi256(styles.rgbToAnsi256(fgColor.red(), fgColor.green(), fgColor.blue()));
             return `${bgColorStr}${fgColorStr}${notesName}${styles.color.close}${styles.bgColor.close}`;
         } else {
-            return `${padString("", this.width, Align.Center)}`;
+            let bgColor = this.getDefaultBgColor(stringIndex, i, length, pitch);
+            let bgColorStr = styles.bgColor.ansi256(styles.rgbToAnsi256(bgColor.red(), bgColor.green(), bgColor.blue()));
+            return `${bgColorStr}${padString("", this.width, Align.Center)}${styles.bgColor.close}`;
         }
     }
 }
@@ -294,14 +299,16 @@ process.argv.forEach(function (val) {
 });
 
 if (!scale && !chord) {
-    console.log(`Please specific scale or chord.`);
-    console.log(`guitar-boards [-scale=|-chord=][[#]A-G]`);
-    console.log(`guitar-boards [-scale=|-chord=][[#]A-G]
-                               [-root1=${guitarStrings[0].root}] [-root2=${guitarStrings[1].root}] [-root3=${guitarStrings[2].root}] 
-                               [-root4=${guitarStrings[3].root}] [-root5=${guitarStrings[4].root}] [-root6=${guitarStrings[5].root}] 
-                               [-frets=${frets}] [-fretWidth=${fretWidth}] [-dividers=${dividers.join(",")}]
-                               [-showOct=${showOct}] [-hue=${hue}]
-                               `);
+    console.log(`Please specific scale or chord. 
+Usage:
+
+fretboard [-scale=|-chord=][[#]A-G]
+fretboard [-scale=|-chord=][[#]A-G]
+          [-root1=${guitarStrings[0].root}] [-root2=${guitarStrings[1].root}] [-root3=${guitarStrings[2].root}] 
+          [-root4=${guitarStrings[3].root}] [-root5=${guitarStrings[4].root}] [-root6=${guitarStrings[5].root}] 
+          [-frets=${frets}] [-fretWidth=${fretWidth}] [-dividers=${dividers.join(",")}]
+          [-showOct=${showOct}] [-hue=${hue}]
+`);
     exit();
 }
 if (scale) {
